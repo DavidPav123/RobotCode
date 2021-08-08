@@ -1,5 +1,5 @@
 #include "main.h"
-#include "Functions.hpp"
+
 //Drive PID
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Constants
@@ -57,27 +57,16 @@ int drivePID(){
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void driveUsingPID(int traveldistance){
-  double DistancetoRotations = 36000 * (traveldistance/circumference);
-  desiredvalueDrive = DistancetoRotations; //One rotation is 36000
-  resetDriveSensors = true;
-  enableDrivePID = true;
-  pros::Task Driving(drivePID);
-  while(enableDrivePID == true){
-    pros::delay(20);
-  }
-  DriveStop();
-}
-
 void autonomous(){
-  pros::Task Driving(drivePID);
-  resetDriveSensors = true;
-  enableDrivePID = true;
-  desiredvalueDrive = 72000;
-  while(1){
-    pros::delay(100);
-  }
-  /*if(ProgSelect == 1.1){ Front Blue 1
+      pros::Task Driving(drivePID);
+      resetDriveSensors = true;
+      enableDrivePID = true;
+      desiredvalueDrive = 72000;
+      while(1){
+        pros::delay(100);
+        pros::screen::print(pros::E_TEXT_LARGE, 4, "ENCODER POSITION: %3d", abs(rotation_left.get_position()));
+      }
+      /*if(ProgSelect == 1.1){ Front Blue 1
 
-  }*/
+      }*/
 }

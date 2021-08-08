@@ -88,6 +88,9 @@ extern pros::ADIDigitalOut ring_manipulator;
 extern pros::ADIDigitalOut drive_speed_shifter;
 extern pros::ADIAnalogIn ring_pot;
 
+extern bool center_shifter_state;
+extern bool drive_speed_shifter_state;
+
 /**
  * Prototypes for the competition control tasks are redefined here to ensure
  * that they can be called from user code (i.e. calling autonomous from a

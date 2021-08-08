@@ -1,0 +1,100 @@
+#include "main.h"
+
+void autoselectRed(){
+	pros::screen::set_pen(COLOR_RED);
+  pros::screen::draw_rect(320,74,135,148);
+  pros::screen::draw_line(320,110,455,110);
+  pros::screen::draw_line(320,147,455,147);
+  pros::screen::draw_line(320,185,455,185);
+  pros::screen::print(TEXT_MEDIUM,350,105,"");
+  pros::screen::print(TEXT_MEDIUM,330,142,"");
+  pros::screen::print(TEXT_MEDIUM,330,180,"");
+  pros::screen::print(TEXT_MEDIUM,330,216,"");
+}
+void autoselectBlue(){
+  pros::screen::set_pen(COLOR_BLUE);
+  pros::screen::draw_rect(320,74,135,148);
+  pros::screen::draw_line(320,110,455,110);
+  pros::screen::draw_line(320,147,455,147);
+  pros::screen::draw_line(320,185,455,185);
+  pros::screen::print(TEXT_MEDIUM,350,105,"");
+  pros::screen::print(TEXT_MEDIUM,330,142,"");
+  pros::screen::print(TEXT_MEDIUM,330,180,"");
+  pros::screen::print(TEXT_MEDIUM,330,216,"");
+}
+
+void TextChanger(int pencolour){
+	if(pencolour == 0){
+		pros::screen::set_pen(COLOR_SILVER);
+	}
+	if(pencolour == 1){
+		pros::screen::set_pen(COLOR_BLUE);
+	}
+	if(pencolour == 2){
+		pros::screen::set_pen(COLOR_GOLD);
+	}
+  //4
+	pros::screen::draw_line(40,10,70,10);
+	pros::screen::draw_line(10,35,10,65);
+	pros::screen::draw_line(40,10,10,35);
+	pros::screen::draw_line(10,65,40,65);
+	pros::screen::draw_line(70,10,70,45);
+	pros::screen::draw_line(20,65,40,65);
+	pros::screen::draw_line(70,45,85,45);
+	pros::screen::draw_line(85,45,85,65);
+	pros::screen::draw_line(65,65,85,65);
+	pros::screen::draw_line(65,65,65,85);
+	pros::screen::draw_line(40,65,40,85);
+	pros::screen::draw_line(40,85,65,85);
+	pros::screen::draw_line(50,30,50,50);
+	pros::screen::draw_line(30,50,50,50);
+	pros::screen::draw_line(30,49,49,29);
+  //4
+	pros::screen::draw_line(110,60,140,60);
+	pros::screen::draw_line(80,85,80,115);
+	pros::screen::draw_line(110,60,80,85);
+	pros::screen::draw_line(80,115,110,115);
+	pros::screen::draw_line(140,60,140,95);
+	pros::screen::draw_line(90,115,110,115);
+	pros::screen::draw_line(140,95,155,95);
+	pros::screen::draw_line(155,95,155,115);
+	pros::screen::draw_line(135,115,155,115);
+	pros::screen::draw_line(135,115,135,135);
+	pros::screen::draw_line(110,115,110,135);
+	pros::screen::draw_line(110,135,135,135);
+	pros::screen::draw_line(120,80,120,100);
+	pros::screen::draw_line(100,100,120,100);
+	pros::screen::draw_line(100,99,119,79);
+  //4
+	pros::screen::draw_line(40,110,70,110);
+	pros::screen::draw_line(10,135,10,165);
+	pros::screen::draw_line(40,110,10,135);
+	pros::screen::draw_line(10,165,40,165);
+	pros::screen::draw_line(70,110,70,145);
+	pros::screen::draw_line(20,165,40,165);
+	pros::screen::draw_line(70,145,85,145);
+	pros::screen::draw_line(85,145,85,165);
+	pros::screen::draw_line(65,165,85,165);
+	pros::screen::draw_line(65,165,65,185);
+	pros::screen::draw_line(40,165,40,185);
+	pros::screen::draw_line(40,185,65,185);
+	pros::screen::draw_line(50,130,50,150);
+	pros::screen::draw_line(30,150,50,150);
+	pros::screen::draw_line(30,149,49,129);
+  //2
+	pros::screen::draw_line(105,160,135,160);
+	pros::screen::draw_line(90,170,90,185);
+	pros::screen::draw_line(105,160,90,170);
+	pros::screen::draw_line(135,160,150,170);
+	pros::screen::draw_line(150,170,150,190);
+	pros::screen::draw_line(90,235,150,235);
+	pros::screen::draw_line(90,220,90,235);
+	pros::screen::draw_line(150,220,150,235);
+	pros::screen::draw_line(120,220,150,220);
+	pros::screen::draw_line(120,220,149,190);
+	pros::screen::draw_line(90,185,110,185);
+	pros::screen::draw_line(110,175,110,185);
+	pros::screen::draw_line(110,175,125,175);
+	pros::screen::draw_line(125,175,125,185);
+	pros::screen::draw_line(125,185,90,220);
+}
