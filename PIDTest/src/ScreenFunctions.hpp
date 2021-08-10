@@ -2,25 +2,25 @@
 
 void autoselectRed(){
 	pros::screen::set_pen(COLOR_RED);
-  pros::screen::draw_rect(320,74,135,148);
-  pros::screen::draw_line(320,110,455,110);
-  pros::screen::draw_line(320,147,455,147);
-  pros::screen::draw_line(320,185,455,185);
-  pros::screen::print(TEXT_MEDIUM,350,105,"");
-  pros::screen::print(TEXT_MEDIUM,330,142,"");
-  pros::screen::print(TEXT_MEDIUM,330,180,"");
-  pros::screen::print(TEXT_MEDIUM,330,216,"");
+  pros::screen::draw_rect(320,69,455,216);
+  pros::screen::draw_line(320,105,455,105);
+  pros::screen::draw_line(320,142,455,142);
+  pros::screen::draw_line(320,179,455,179);
+  pros::screen::print(TEXT_MEDIUM,328,80,"Placeholder 1");
+  pros::screen::print(TEXT_MEDIUM,328,118,"Placeholder 2");
+  pros::screen::print(TEXT_MEDIUM,328,156,"Placeholder 3");
+  pros::screen::print(TEXT_MEDIUM,328,193,"Placeholder 4");
 }
 void autoselectBlue(){
   pros::screen::set_pen(COLOR_BLUE);
-  pros::screen::draw_rect(320,74,135,148);
-  pros::screen::draw_line(320,110,455,110);
-  pros::screen::draw_line(320,147,455,147);
-  pros::screen::draw_line(320,185,455,185);
-  pros::screen::print(TEXT_MEDIUM,350,105,"");
-  pros::screen::print(TEXT_MEDIUM,330,142,"");
-  pros::screen::print(TEXT_MEDIUM,330,180,"");
-  pros::screen::print(TEXT_MEDIUM,330,216,"");
+  pros::screen::draw_rect(320,69,455,216);
+  pros::screen::draw_line(320,105,455,105);
+  pros::screen::draw_line(320,142,455,142);
+  pros::screen::draw_line(320,179,455,179);
+  pros::screen::print(TEXT_MEDIUM,328,80,"Placeholder 1");
+  pros::screen::print(TEXT_MEDIUM,328,118,"Placeholder 2");
+  pros::screen::print(TEXT_MEDIUM,328,156,"Placeholder 3");
+  pros::screen::print(TEXT_MEDIUM,328,193,"Placeholder 4");
 }
 
 void TextChanger(int pencolour){
@@ -97,4 +97,36 @@ void TextChanger(int pencolour){
 	pros::screen::draw_line(110,175,125,175);
 	pros::screen::draw_line(125,175,125,185);
 	pros::screen::draw_line(125,185,90,220);
+}
+
+void MotorConnected(){
+	pros::screen::set_pen(COLOR_WHITE);
+	pros::screen::draw_line(165,110,465,110); //Top line
+	pros::screen::draw_line(165,140,465,140); //2nd line
+	pros::screen::draw_line(165,170,465,170); //3rd line
+	pros::screen::draw_line(165,200,465,200); //4th line
+	pros::screen::draw_line(315,110,315,230); //Verticle line
+	pros::screen::draw_rect(425,75,455,105); //Next page arrow square
+	pros::screen::set_pen(COLOR_MAROON);
+	pros::screen::print(TEXT_MEDIUM,170,90,"MOTORS");
+	pros::screen::draw_line(445,90,435,80); //Top arrow
+	pros::screen::draw_line(445,90,435,100); //Bottom arrow
+	pros::screen::print(TEXT_SMALL,170,120,"Left Front"); //Left 1
+	pros::screen::print(TEXT_SMALL,170,150,"Center Left"); //Left 2
+	pros::screen::print(TEXT_SMALL,170,180,"Left Back"); //Left 3
+	pros::screen::print(TEXT_SMALL,170,210,"Ring Four Bar"); //Left 4
+	pros::screen::print(TEXT_SMALL,320,120,"Right Front"); //Right 1
+	pros::screen::print(TEXT_SMALL,320,150,"Center Right"); //Right 2
+	pros::screen::print(TEXT_SMALL,320,180,"Right Back"); //Right 3
+	pros::screen::print(TEXT_SMALL,320,210,"Mobile Goal"); //Right 4
+	pros::screen::set_pen(COLOR_RED);
+	//Create status circles
+	pros::screen::fill_circle(305, 125, 5);
+	pros::screen::fill_circle(305, 155, 5);
+	pros::screen::fill_circle(305, 185, 5);
+	pros::screen::fill_circle(305, 215, 5);
+	pros::screen::fill_circle(455, 125, 5);
+	pros::screen::fill_circle(455, 155, 5);
+	pros::screen::fill_circle(455, 185, 5);
+	pros::screen::fill_circle(455, 215, 5);
 }

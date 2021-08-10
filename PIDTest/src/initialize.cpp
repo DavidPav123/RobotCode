@@ -9,6 +9,7 @@ int SideSelect = 0;
 double Screen = 0;
 double ProgSelect = 0;
 int squareselect = 0;
+int subscreen = 0;
 
 void initialize() {
   center_shifter.set_value(true);
@@ -29,7 +30,7 @@ void initialize() {
       pros::screen::print(TEXT_MEDIUM,225,90,"Autonomous Select");
  			pros::screen::print(TEXT_MEDIUM,220,175,"System Diagnostics");
       pros::screen::print(TEXT_MEDIUM,420,23,"Set");
-      pros::delay(500);
+      pros::delay(500); //Delay to make sure there is no accidental input
  			while(Screen == 0){
         pros::screen_touch_status_s_t status = pros::screen::touch_status();
         if(status.touch_status > 0 ){
@@ -46,16 +47,17 @@ void initialize() {
    				}
 
         }
+        pros::delay(100);
  			}
- 		}
+    }
  		if(Screen == 2){ //Program Select Screen
  			pros::screen::erase();
       TextChanger(2);
  			pros::screen::set_pen(COLOR_WHITE);
  			pros::screen::draw_rect(165,10,465,230); //Draw Main Rectangle
- 			pros::screen::draw_rect(175,70,310,135);
- 			pros::screen::draw_rect(175,150,310,215);
-      pros::screen::draw_rect(425,15,455,45);
+ 			pros::screen::draw_rect(175,70,310,135);  //Blue auto Rectangle
+ 			pros::screen::draw_rect(175,150,310,215); //Red auto Rectangle
+      pros::screen::draw_rect(425,15,455,45); //Back arrow box
  			pros::screen::draw_line(175,50,455,50); //Underline
       pros::screen::set_pen(COLOR_MAROON);
  			pros::screen::print(TEXT_MEDIUM,225,85,"Blue");
@@ -63,9 +65,9 @@ void initialize() {
  			pros::screen::print(TEXT_MEDIUM,225,165,"Red");
  			pros::screen::print(TEXT_MEDIUM,205,185,"Alliance");
  			pros::screen::print(TEXT_LARGE,175,15,"Auto");
- 			pros::screen::draw_line(435,30,445,20);
- 			pros::screen::draw_line(435,30,445,40);
- 			pros::delay(500);
+      pros::screen::draw_line(435,30,445,20); //top arrow
+ 			pros::screen::draw_line(435,30,445,40); //bottom arrow
+ 			pros::delay(500); //Delay to make sure there is no accidental input
  			while(Screen == 2 ){
         pros::screen_touch_status_s_t status = pros::screen::touch_status();
         if(status.touch_status > 0 ){
@@ -84,55 +86,86 @@ void initialize() {
                 autoselectRed();
  				     }
              if(SideSelect == 1){
+               autoselectBlue();
+               pros::screen::set_pen(COLOR_GREEN);
                if(status.y < 110 && status.y >74 && status.x <455 && status.x > 320){
                  ProgSelect = 1.1;
-                 pros::screen::set_pen(COLOR_GREEN);
-                 pros::screen::draw_rect(320,74,135,36);
+                 pros::screen::draw_rect(320,69,455,105);
                }
                if(status.y < 147 && status.y >110 && status.x <455 && status.x > 320){
                  ProgSelect = 1.2;
-                 pros::screen::set_pen(COLOR_GREEN);
-                 pros::screen::draw_rect(320,110,135,37);
+                 pros::screen::draw_rect(320,105,455,142);
                }
                if(status.y < 185 && status.y >147 && status.x <455 && status.x > 320){
                  ProgSelect = 1.3;
-                 pros::screen::set_pen(COLOR_GREEN);
-                 pros::screen::draw_rect(320,147,135,38);
+                 pros::screen::draw_rect(320,142,455,179);
                }
                if(status.y < 228 && status.y >185 && status.x <455 && status.x > 320){
                  ProgSelect = 1.4;
-                 pros::screen::set_pen(COLOR_GREEN);
-                 pros::screen::draw_rect(320,185,135,43);
+                 pros::screen::draw_rect(320,179,455,216);
                }
              }
              if(SideSelect == 2){
+               autoselectRed();
+               pros::screen::set_pen(COLOR_GREEN);
                if(status.y < 110 && status.y >74 && status.x <455 && status.x > 320){
                  ProgSelect = 2.1;
-                 pros::screen::set_pen(COLOR_GREEN);
-                 pros::screen::draw_rect(320,74,135,36);
+                 pros::screen::draw_rect(320,69,455,105);
                }
                if(status.y < 147 && status.y >110 && status.x <455 && status.x > 320){
                  ProgSelect = 2.2;
-                 pros::screen::set_pen(COLOR_GREEN);
-                 pros::screen::draw_rect(320,110,135,37);
+                 pros::screen::draw_rect(320,105,455,142);
                }
                if(status.y < 185 && status.y >147 && status.x <455 && status.x > 320){
                  ProgSelect = 2.3;
-                 pros::screen::set_pen(COLOR_GREEN);
-                 pros::screen::draw_rect(320,147,135,38);
+                 pros::screen::draw_rect(320,142,455,179);
                }
                if(status.y < 228 && status.y >185 && status.x <455 && status.x > 320){
                  ProgSelect = 2.4;
-                 pros::screen::set_pen(COLOR_GREEN);
-                 pros::screen::draw_rect(320,185,135,43);
+                 pros::screen::draw_rect(320,179,455,216);
                }
              }
  			  }
+        pros::delay(100); //Delay to save resources
       }
  		}
  		if(Screen == 3){ //Settings Screen
+      pros::screen::erase();
+      TextChanger(2);
+ 			pros::screen::set_pen(COLOR_WHITE);
+ 			pros::screen::draw_rect(165,10,465,230); //Draw Main Rectangle
+      pros::screen::draw_rect(425,15,455,45); //Back arrow square
+ 			pros::screen::draw_line(175,50,455,50); //Underline
+      pros::screen::set_pen(COLOR_MAROON);
+ 			pros::screen::print(TEXT_LARGE,175,15,"System");
+ 			pros::screen::draw_line(435,30,445,20); //top arrow
+ 			pros::screen::draw_line(435,30,445,40); //bottom arrow
+      MotorConnected();
  			while(Screen == 3){
- 		}
+        pros::screen_touch_status_s_t status = pros::screen::touch_status();
+        if(status.touch_status > 0 ){
+          if(status.y < 50 && status.y >20 && status.x <455 && status.x > 425){//Exit
+             Screen = 0;
+          }
+          if(status.y < 105 && status.y >75 && status.x <455 && status.x > 425){//Exit
+             if(subscreen == 0){
+               subscreen = 1;
+             }
+             else{
+               subscreen = 2;
+             }
+          }
+          if(subscreen == 0){
+          }
+          if(subscreen == 1){
+
+          }
+          if(subscreen == 2){
+
+          }
+        }
+        pros::delay(100); //Delay to save resources
+ 		  }
  		}
  	}
 }
