@@ -9,7 +9,8 @@ void opcontrol(){
   ring_pot.calibrate();
 
   while (1) {
-    //pros::screen::print(pros::E_TEXT_LARGE, 4, "Value: %5d", ring_pot.get_value());
+    //pros::screen::erase();
+    //pros::screen::print(pros::E_TEXT_LARGE, 4, "Value: %5d",mobo_pot.get_value());
     //Drive Control
     ///////////////////////////////////////////////////////////////////////////
     double turnVal = Controller1.get_analog(ANALOG_LEFT_X)/1.27;

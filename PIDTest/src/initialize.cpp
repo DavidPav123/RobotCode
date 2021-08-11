@@ -140,32 +140,39 @@ void initialize() {
  			pros::screen::print(TEXT_LARGE,175,15,"System");
  			pros::screen::draw_line(435,30,445,20); //top arrow
  			pros::screen::draw_line(435,30,445,40); //bottom arrow
-      MotorConnected();
+      if(subscreen == 0){
+        MotorConnected();
+      }else if(subscreen == 1){
+        SensorConnected();
+      }
+      pros::delay(1000);
  			while(Screen == 3){
         pros::screen_touch_status_s_t status = pros::screen::touch_status();
         if(status.touch_status > 0 ){
           if(status.y < 50 && status.y >20 && status.x <455 && status.x > 425){//Exit
              Screen = 0;
           }
-          if(status.y < 105 && status.y >75 && status.x <455 && status.x > 425){//Exit
-             if(subscreen == 0){
-               subscreen = 1;
-             }
-             else{
-               subscreen = 2;
-             }
+          if(status.y < 105 && status.y >75 && status.x <455 && status.x > 425){//Page change
+            if(subscreen == 0){
+              subscreen = 1;
+              Screen = 4;
+            }else if(subscreen == 1){
+              subscreen = 0;
+              Screen = 4;
+            }
           }
-          if(subscreen == 0){
-          }
-          if(subscreen == 1){
-
-          }
-          if(subscreen == 2){
-
-          }
+        } //End of touch
+        if(subscreen == 0){
+          MIfChain();
+        }
+        if(subscreen == 1){
+          SensorChain();
         }
         pros::delay(100); //Delay to save resources
  		  }
  		}
+    if(Screen == 4){//Reset screen 3
+      Screen = 3;
+    }
  	}
 }

@@ -111,14 +111,14 @@ void MotorConnected(){
 	pros::screen::print(TEXT_MEDIUM,170,90,"MOTORS");
 	pros::screen::draw_line(445,90,435,80); //Top arrow
 	pros::screen::draw_line(445,90,435,100); //Bottom arrow
-	pros::screen::print(TEXT_SMALL,170,120,"Left Front"); //Left 1
-	pros::screen::print(TEXT_SMALL,170,150,"Center Left"); //Left 2
-	pros::screen::print(TEXT_SMALL,170,180,"Left Back"); //Left 3
-	pros::screen::print(TEXT_SMALL,170,210,"Ring Four Bar"); //Left 4
-	pros::screen::print(TEXT_SMALL,320,120,"Right Front"); //Right 1
-	pros::screen::print(TEXT_SMALL,320,150,"Center Right"); //Right 2
-	pros::screen::print(TEXT_SMALL,320,180,"Right Back"); //Right 3
-	pros::screen::print(TEXT_SMALL,320,210,"Mobile Goal"); //Right 4
+	pros::screen::print(TEXT_SMALL,170,120,"19:Left Front"); //Left 1
+	pros::screen::print(TEXT_SMALL,170,150,"17:Center Left"); //Left 2
+	pros::screen::print(TEXT_SMALL,170,180,"20:Left Back"); //Left 3
+	pros::screen::print(TEXT_SMALL,170,210,"13:Ring Four Bar"); //Left 4
+	pros::screen::print(TEXT_SMALL,320,120,"11:Right Front"); //Right 1
+	pros::screen::print(TEXT_SMALL,320,150,"18:Center Right"); //Right 2
+	pros::screen::print(TEXT_SMALL,320,180,"12:Right Back"); //Right 3
+	pros::screen::print(TEXT_SMALL,320,210,"14:Mobile Goal"); //Right 4
 	pros::screen::set_pen(COLOR_RED);
 	//Create status circles
 	pros::screen::fill_circle(305, 125, 5);
@@ -129,4 +129,166 @@ void MotorConnected(){
 	pros::screen::fill_circle(455, 155, 5);
 	pros::screen::fill_circle(455, 185, 5);
 	pros::screen::fill_circle(455, 215, 5);
+}
+
+void SensorConnected(){
+	pros::screen::set_pen(COLOR_WHITE);
+	pros::screen::draw_line(165,110,465,110); //Top line
+	pros::screen::draw_line(165,140,465,140); //2nd line
+	pros::screen::draw_line(165,170,465,170); //3rd line
+	pros::screen::draw_line(165,200,465,200); //4th line
+	pros::screen::draw_line(315,110,315,230); //Verticle line
+	pros::screen::draw_rect(425,75,455,105); //First page arrow square
+	pros::screen::set_pen(COLOR_MAROON);
+	pros::screen::print(TEXT_MEDIUM,170,90,"Sensors");
+	pros::screen::draw_line(445,80,435,90); //Top arrow
+	pros::screen::draw_line(445,100,435,90); //Bottom arrow
+	pros::screen::print(TEXT_SMALL,170,120,"6:Left roto"); //Left 1
+	pros::screen::print(TEXT_SMALL,170,150,"A:Mobo pot"); //Left 2
+	pros::screen::print(TEXT_SMALL,320,120,"15:Right roto"); //Right 1
+	pros::screen::print(TEXT_SMALL,320,150,"E:Ringly pot"); //Right 2
+	pros::screen::set_pen(COLOR_RED);
+	//Create status circles
+	pros::screen::fill_circle(305, 125, 5);
+	pros::screen::fill_circle(305, 155, 5);
+	//pros::screen::fill_circle(305, 185, 5);
+	//pros::screen::fill_circle(305, 215, 5);
+	pros::screen::fill_circle(455, 125, 5);
+	pros::screen::fill_circle(455, 155, 5);
+	//pros::screen::fill_circle(455, 185, 5);
+	//pros::screen::fill_circle(455, 215, 5);
+}
+
+void MIfChain(){
+	if(left_back_motor.get_temperature() < 50){
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(305, 185, 5);
+	}
+	else if(left_back_motor.get_temperature() < 100){
+		pros::screen::set_pen(COLOR_YELLOW);
+		pros::screen::fill_circle(305, 185, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(305, 185, 5);
+	}
+	if(left_front_motor.get_temperature() < 50){
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(305, 125, 5);
+	}
+	else if(left_front_motor.get_temperature() < 100){
+		pros::screen::set_pen(COLOR_YELLOW);
+		pros::screen::fill_circle(305, 125, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(305, 125, 5);
+	}
+	if(center_left.get_temperature() < 50){
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(305, 155, 5);
+	}
+	else if(center_left.get_temperature() < 100){
+		pros::screen::set_pen(COLOR_YELLOW);
+		pros::screen::fill_circle(305, 155, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(305, 155, 5);
+	}
+	if(right_front_motor.get_temperature() < 50){
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(455, 125, 5);
+	}
+	else if(right_front_motor.get_temperature() < 100){
+		pros::screen::set_pen(COLOR_YELLOW);
+		pros::screen::fill_circle(455, 125, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(455, 125, 5);
+	}
+	if(right_back_motor.get_temperature() < 50){
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(455, 185, 5);
+	}
+	else if(right_back_motor.get_temperature() < 100){
+		pros::screen::set_pen(COLOR_YELLOW);
+		pros::screen::fill_circle(455, 185, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(455, 185, 5);
+	}
+	if(center_right.get_temperature() < 50){
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(455, 155, 5);
+	}
+	else if(center_right.get_temperature() < 100){
+		pros::screen::set_pen(COLOR_YELLOW);
+		pros::screen::fill_circle(455, 155, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(455, 155, 5);
+	}
+	if(ringly_dingler.get_temperature() < 50){
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(305, 215, 5);
+	}
+	else if(ringly_dingler.get_temperature() < 100){
+		pros::screen::set_pen(COLOR_YELLOW);
+		pros::screen::fill_circle(305, 215, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(305, 215, 5);
+	}
+	if(mobile_goal.get_temperature() < 50){
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(455, 215, 5);
+	}
+	else if(mobile_goal.get_temperature() < 100){
+		pros::screen::set_pen(COLOR_YELLOW);
+		pros::screen::fill_circle(455, 215, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(455, 215, 5);
+	}
+}
+
+void SensorChain(){
+	if(rotation_left.get_velocity()> 2000000000){
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(305, 125, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(305, 125, 5);
+	}
+	if(rotation_right.get_velocity()> 2000000000){
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(455, 125, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(455, 125, 5);
+	}
+	if(mobo_pot.get_value() == 39){
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(305, 155, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(305, 155, 5);
+	}
+	if(ring_pot.get_value() == 40 || ring_pot.get_value() == 10){
+		pros::screen::set_pen(COLOR_RED);
+		pros::screen::fill_circle(455, 155, 5);
+	}
+	else{
+		pros::screen::set_pen(COLOR_GREEN);
+		pros::screen::fill_circle(455, 155, 5);
+	}
 }
