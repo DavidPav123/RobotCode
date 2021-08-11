@@ -1,5 +1,7 @@
 #include "main.h"
 
+int ProgSelect = 0;
+
 void autoselectRed(){
 	pros::screen::set_pen(COLOR_RED);
   pros::screen::draw_rect(320,69,455,216);
@@ -21,6 +23,43 @@ void autoselectBlue(){
   pros::screen::print(TEXT_MEDIUM,328,118,"Placeholder 2");
   pros::screen::print(TEXT_MEDIUM,328,156,"Placeholder 3");
   pros::screen::print(TEXT_MEDIUM,328,193,"Placeholder 4");
+}
+
+void printSelectedAuto(){
+	switch(ProgSelect){
+		case 11:
+			pros::screen::print(TEXT_LARGE,175,120,"PH");
+			Controller1.print(1, 8, "PHA");
+			break;
+		case 12:
+			pros::screen::print(TEXT_LARGE,175,120,"PH");
+			Controller1.print(1, 8, "PHA");
+			break;
+		case 13:
+			pros::screen::print(TEXT_LARGE,175,120,"PH");
+			Controller1.print(1, 8, "PHA");
+			break;
+		case 14:
+			pros::screen::print(TEXT_LARGE,175,120,"Ph");
+			Controller1.print(1, 8, "PHA");
+			break;
+		case 21:
+			pros::screen::print(TEXT_LARGE,175,120,"Ph");
+			Controller1.print(1, 8, "PHA");
+			break;
+		case 22:
+			pros::screen::print(TEXT_LARGE,175,120,"PH");
+			Controller1.print(1, 8, "PHA");
+			break;
+		case 23:
+			pros::screen::print(TEXT_LARGE,175,120,"ph");
+			Controller1.print(1, 8, "PHA");
+			break;
+		case 24:
+			pros::screen::print(TEXT_LARGE,175,120,"ph");
+			Controller1.print(1, 8, "PHA");
+			break;
+	}
 }
 
 void TextChanger(int pencolour){

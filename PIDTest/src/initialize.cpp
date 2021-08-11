@@ -7,9 +7,10 @@ int Pre = 0;
 double tileselect = 0;
 int SideSelect = 0;
 double Screen = 0;
-double ProgSelect = 0;
 int squareselect = 0;
 int subscreen = 0;
+int contollerLine = 0;
+
 
 void initialize() {
   center_shifter.set_value(true);
@@ -18,6 +19,7 @@ void initialize() {
   while(Pre==0){//Gui initialize
  		if(Screen == 0){//Home Screen
  			pros::screen::erase();
+      Controller1.clear();
       TextChanger(2);
       pros::screen::set_pen(COLOR_WHITE);
  			pros::screen::draw_rect(165,10,465,230); //Draws Main Rectangle
@@ -30,7 +32,9 @@ void initialize() {
       pros::screen::print(TEXT_MEDIUM,225,90,"Autonomous Select");
  			pros::screen::print(TEXT_MEDIUM,220,175,"System Diagnostics");
       pros::screen::print(TEXT_MEDIUM,420,23,"Set");
+      //Controller screen
       pros::delay(500); //Delay to make sure there is no accidental input
+      Controller1.print(0, 8, "Set");
  			while(Screen == 0){
         pros::screen_touch_status_s_t status = pros::screen::touch_status();
         if(status.touch_status > 0 ){
@@ -42,10 +46,20 @@ void initialize() {
    				}
           if(status.y < 42 && status.y >18 && status.x < 455 && status.x > 410){
              pros::screen::erase();
+             Controller1.clear();
+             pros::delay(150);
+             printSelectedAuto();
              Pre = 1;
              break;
    				}
-
+        }
+        if(Controller1.get_digital(DIGITAL_A) && contollerLine == 0){
+          pros::screen::erase();
+          Controller1.clear();
+          pros::delay(150);
+          printSelectedAuto();
+          Pre = 1;
+          break;
         }
         pros::delay(100);
  			}
@@ -89,19 +103,19 @@ void initialize() {
                autoselectBlue();
                pros::screen::set_pen(COLOR_GREEN);
                if(status.y < 110 && status.y >74 && status.x <455 && status.x > 320){
-                 ProgSelect = 1.1;
+                 ProgSelect = 11;
                  pros::screen::draw_rect(320,69,455,105);
                }
                if(status.y < 147 && status.y >110 && status.x <455 && status.x > 320){
-                 ProgSelect = 1.2;
+                 ProgSelect = 12;
                  pros::screen::draw_rect(320,105,455,142);
                }
                if(status.y < 185 && status.y >147 && status.x <455 && status.x > 320){
-                 ProgSelect = 1.3;
+                 ProgSelect = 13;
                  pros::screen::draw_rect(320,142,455,179);
                }
                if(status.y < 228 && status.y >185 && status.x <455 && status.x > 320){
-                 ProgSelect = 1.4;
+                 ProgSelect = 14;
                  pros::screen::draw_rect(320,179,455,216);
                }
              }
@@ -109,19 +123,19 @@ void initialize() {
                autoselectRed();
                pros::screen::set_pen(COLOR_GREEN);
                if(status.y < 110 && status.y >74 && status.x <455 && status.x > 320){
-                 ProgSelect = 2.1;
+                 ProgSelect = 21;
                  pros::screen::draw_rect(320,69,455,105);
                }
                if(status.y < 147 && status.y >110 && status.x <455 && status.x > 320){
-                 ProgSelect = 2.2;
+                 ProgSelect = 22;
                  pros::screen::draw_rect(320,105,455,142);
                }
                if(status.y < 185 && status.y >147 && status.x <455 && status.x > 320){
-                 ProgSelect = 2.3;
+                 ProgSelect = 23;
                  pros::screen::draw_rect(320,142,455,179);
                }
                if(status.y < 228 && status.y >185 && status.x <455 && status.x > 320){
-                 ProgSelect = 2.4;
+                 ProgSelect = 24;
                  pros::screen::draw_rect(320,179,455,216);
                }
              }
