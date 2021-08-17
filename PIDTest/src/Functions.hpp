@@ -38,17 +38,17 @@ void timeDrive(int ppower, int time){
 ///////////////////////////////////////////////////////////////////////////
 void MobileGoalUp(){
   while(mobo_pot.get_value() < 10){
-    mobile_goal.move_voltage(12000);
+    mobile_goal_left.move_voltage(12000);
   }
-  mobile_goal.move_voltage(0);
-  mobile_goal.set_brake_mode(MOTOR_BRAKE_BRAKE);
+  mobile_goal_left.move_voltage(0);
+  mobile_goal_left.set_brake_mode(MOTOR_BRAKE_BRAKE);
 }
 
 void MobileGoalDown(){
   while(mobo_pot.get_value() > 10){
-    mobile_goal.move_voltage(-12000);
+    mobile_goal_left.move_voltage(-12000);
   }
-  mobile_goal.move_voltage(0);
-  mobile_goal.set_brake_mode(MOTOR_BRAKE_BRAKE);
+  mobile_goal_left.move_voltage(0);
+  mobile_goal_left.set_brake_mode(MOTOR_BRAKE_BRAKE);
 }
 ///////////////////////////////////////////////////////////////////////////

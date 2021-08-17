@@ -271,11 +271,11 @@ void MIfChain(){
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(455, 155, 5);
 	}
-	if(ringly_dingler.get_temperature() < 50){
+	if(mobile_goal_left.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(305, 215, 5);
 	}
-	else if(ringly_dingler.get_temperature() < 100){
+	else if(mobile_goal_left.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(305, 215, 5);
 	}
@@ -283,11 +283,11 @@ void MIfChain(){
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(305, 215, 5);
 	}
-	if(mobile_goal.get_temperature() < 50){
+	if(mobile_goal_right.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(455, 215, 5);
 	}
-	else if(mobile_goal.get_temperature() < 100){
+	else if(mobile_goal_right.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(455, 215, 5);
 	}

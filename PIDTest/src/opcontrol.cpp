@@ -1,12 +1,16 @@
 #include "main.h"
+#include "MotorDefs.hpp"
 
 void opcontrol(){
   double turnImportance = 0.5;
   bool centerWheelCoupled = true;
+  //bool clawstate = false;
+  ring_manipulator.set_value(true);
+  center_shifter.set_value(false);
 
-  ringly_dingler.set_brake_mode(MOTOR_BRAKE_BRAKE);
-  mobile_goal.set_brake_mode(MOTOR_BRAKE_BRAKE);
-  ring_pot.calibrate();
+  mobile_goal_left.set_brake_mode(MOTOR_BRAKE_BRAKE);
+  mobile_goal_right.set_brake_mode(MOTOR_BRAKE_BRAKE);
+  //ring_pot.calibrate();
 
   while (1) {
     //pros::screen::erase();
@@ -18,7 +22,7 @@ void opcontrol(){
     double turnVolts = turnVal * 120;
     double forwardVolts = forwardVal * 120 * (1 - (std::abs(turnVolts)/12000) * turnImportance);
 
-    if(centerWheelCoupled == false){
+    if(centerWheelCoupled == true){
       left_back_motor.move_voltage(forwardVolts + turnVolts);
       left_front_motor.move_voltage(forwardVolts + turnVolts);
       right_back_motor.move_voltage(forwardVolts - turnVolts);
@@ -56,29 +60,19 @@ void opcontrol(){
     }
     ///////////////////////////////////////////////////////////////////////////
 
-    //Four Bar Control
-    ///////////////////////////////////////////////////////////////////////////
-    if(Controller1.get_digital(DIGITAL_X)){
-      ringly_dingler.move_voltage(12000);
-    }
-    else if(Controller1.get_digital(DIGITAL_Y)){
-      ringly_dingler.move_voltage(-12000);
-    }
-    else{
-      ringly_dingler.move_voltage(0);
-    }
-    ///////////////////////////////////////////////////////////////////////////
-
     //Mobile Goal Control
     ///////////////////////////////////////////////////////////////////////////
     if (Controller1.get_digital(DIGITAL_L2)){
-      mobile_goal.move_voltage(12000);
+      mobile_goal_left.move_voltage(12000);
+      mobile_goal_right.move_voltage(12000);
     }
     else if (Controller1.get_digital(DIGITAL_L1)){
-      mobile_goal.move_voltage(-12000);
+      mobile_goal_left.move_voltage(-12000);
+      mobile_goal_right.move_voltage(-12000);
     }
     else{
-      mobile_goal.move_voltage(0);
+      mobile_goal_left.move_voltage(0);
+      mobile_goal_right.move_voltage(0);
     }
     ///////////////////////////////////////////////////////////////////////////
 
@@ -86,18 +80,11 @@ void opcontrol(){
     ///////////////////////////////////////////////////////////////////////////
     if(Controller1.get_digital(DIGITAL_UP)){
       center_shifter.set_value(true);
-      drive_speed_shifter.set_value(false);
       centerWheelCoupled = true;
     }
     else if(Controller1.get_digital(DIGITAL_DOWN)){
       center_shifter.set_value(false);
-      drive_speed_shifter.set_value(true);
       centerWheelCoupled = false;
-    }
-    else if(Controller1.get_digital(DIGITAL_RIGHT)){
-      center_shifter.set_value(false);
-      drive_speed_shifter.set_value(false);
-      centerWheelCoupled = true;
     }
 
     if(Controller1.get_digital(DIGITAL_A)){
@@ -106,6 +93,7 @@ void opcontrol(){
     else{
       ring_manipulator.set_value(true);
     }
+
     ///////////////////////////////////////////////////////////////////////////
     pros::delay(10);
   }

@@ -55,20 +55,20 @@
 // using namespace pros::literals;
 // using namespace okapi;
 
-#define LEFT_BACK_MOTOR_PORT 20
-#define LEFT_FRONT_MOTOR_PORT 19
+#define LEFT_BACK_MOTOR_PORT 11
+#define LEFT_FRONT_MOTOR_PORT 14
 #define CENTER_LEFT_PORT 17
-#define CENTER_RIGHT_PORT 18
-#define RIGHT_FRONT_MOTOR_PORT 11
+#define CENTER_RIGHT_PORT 4
+#define RIGHT_FRONT_MOTOR_PORT 13
 #define RIGHT_BACK_MOTOR_PORT 12
-#define RINGLY_DINGLER_PORT 13
-#define MOBILE_GOAL_PORT 14
-#define ROTATION_LEFT_PORT 6
-#define ROTATION_RIGHT_PORT 15
+#define MOBILE_GOAL_LEFT_PORT 2
+#define MOBILE_GOAL_RIGHT_PORT 1
+#define ROTATION_LEFT_PORT 18
+#define ROTATION_RIGHT_PORT 17
 #define MOBO_POT_PORT 1
-#define CENTER_SHIFTER_PORT 2
-#define RING_MANIPULATOR_PORT 3
-#define DRIVE_SPEED_SHIFTER_PORT 4
+#define CENTER_SHIFTER_PORT 4
+#define RING_MANIPULATOR_PORT 8
+#define DRIVE_SPEED_SHIFTER_PORT 6
 #define RING_POT_PORT 5
 
 extern pros::Controller Controller1;
@@ -78,8 +78,8 @@ extern pros::Motor center_left;
 extern pros::Motor center_right;
 extern pros::Motor right_back_motor;
 extern pros::Motor right_front_motor;
-extern pros::Motor ringly_dingler;
-extern pros::Motor mobile_goal;
+extern pros::Motor mobile_goal_left;
+extern pros::Motor mobile_goal_right;
 extern pros::Rotation rotation_left;
 extern pros::Rotation rotation_right;
 extern pros::ADIAnalogIn mobo_pot;
