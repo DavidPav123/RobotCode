@@ -3,14 +3,10 @@
 
 void opcontrol(){
   double turnImportance = 0.5;
-  bool centerWheelCoupled = true;
-  //bool clawstate = false;
-  ring_manipulator.set_value(true);
-  center_shifter.set_value(false);
 
-  mobile_goal_left.set_brake_mode(MOTOR_BRAKE_BRAKE);
-  mobile_goal_right.set_brake_mode(MOTOR_BRAKE_BRAKE);
-  //ring_pot.calibrate();
+  rear_mobile_goal.set_value(true);
+
+  mobile_goal.set_brake_mode(MOTOR_BRAKE_BRAKE);
 
   while (1) {
     //pros::screen::erase();
@@ -22,78 +18,58 @@ void opcontrol(){
     double turnVolts = turnVal * 120;
     double forwardVolts = forwardVal * 120 * (1 - (std::abs(turnVolts)/12000) * turnImportance);
 
-    if(centerWheelCoupled == true){
-      left_back_motor.move_voltage(forwardVolts + turnVolts);
-      left_front_motor.move_voltage(forwardVolts + turnVolts);
-      right_back_motor.move_voltage(forwardVolts - turnVolts);
-      right_front_motor.move_voltage(forwardVolts - turnVolts);
-    }
-    else{
-      left_back_motor.move_voltage(forwardVolts + turnVolts);
-      left_front_motor.move_voltage(forwardVolts + turnVolts);
-      right_back_motor.move_voltage(forwardVolts - turnVolts);
-      right_front_motor.move_voltage(forwardVolts - turnVolts);
-      center_right.move_voltage(forwardVolts - turnVolts);
-      center_left.move_voltage(forwardVolts + turnVolts);
-      center_left.set_brake_mode(MOTOR_BRAKE_COAST);
-      center_right.set_brake_mode(MOTOR_BRAKE_COAST);
-    }
-    ///////////////////////////////////////////////////////////////////////////
+    left_front_motor.move_voltage(forwardVolts + turnVolts);
+    center_left.move_voltage(forwardVolts + turnVolts);
+    left_back_motor.move_voltage(forwardVolts + turnVolts);
+    right_front_motor.move_voltage(forwardVolts - turnVolts);
+    center_right.move_voltage(forwardVolts - turnVolts);
+    right_back_motor.move_voltage(forwardVolts - turnVolts);
 
-    //Lift Control
-    ///////////////////////////////////////////////////////////////////////////
-    if(centerWheelCoupled == false){
-      if (Controller1.get_digital(DIGITAL_R2)){
-        center_left.move_voltage(-12000);
-        center_right.move_voltage(12000);
-      }
-      else if (Controller1.get_digital(DIGITAL_R1)){
-        center_left.move_voltage(12000);
-        center_right.move_voltage(-12000);
-      }
-      else{
-        center_left.move_voltage(0);
-        center_right.move_voltage(0);
-        center_left.set_brake_mode(MOTOR_BRAKE_BRAKE);
-        center_right.set_brake_mode(MOTOR_BRAKE_BRAKE);
-      }
-    }
     ///////////////////////////////////////////////////////////////////////////
 
     //Mobile Goal Control
     ///////////////////////////////////////////////////////////////////////////
     if (Controller1.get_digital(DIGITAL_L2)){
-      mobile_goal_left.move_voltage(12000);
-      mobile_goal_right.move_voltage(12000);
+      mobile_goal.move_voltage(12000);
     }
     else if (Controller1.get_digital(DIGITAL_L1)){
-      mobile_goal_left.move_voltage(-12000);
-      mobile_goal_right.move_voltage(-12000);
+      mobile_goal.move_voltage(-12000);
     }
     else{
-      mobile_goal_left.move_voltage(0);
-      mobile_goal_right.move_voltage(0);
+      mobile_goal.move_voltage(0);
+    }
+    ///////////////////////////////////////////////////////////////////////////
+
+    //Intake
+    ///////////////////////////////////////////////////////////////////////////
+    if (Controller1.get_digital(DIGITAL_R2)){
+      intake.move_voltage(12000);
+    }
+    else if (Controller1.get_digital(DIGITAL_R1)){
+      intake.move_voltage(-12000);
+    }
+    else{
+      intake.move_voltage(0);
     }
     ///////////////////////////////////////////////////////////////////////////
 
     //Pnuematics
     ///////////////////////////////////////////////////////////////////////////
-    if(Controller1.get_digital(DIGITAL_UP)){
-      center_shifter.set_value(true);
-      centerWheelCoupled = true;
+    //Front Claw
+    if(Controller1.get_digital(DIGITAL_X)){
+      front_mobile_goal.set_value(true);
     }
-    else if(Controller1.get_digital(DIGITAL_DOWN)){
-      center_shifter.set_value(false);
-      centerWheelCoupled = false;
+    else if(Controller1.get_digital(DIGITAL_Y)){
+      front_mobile_goal.set_value(false);
     }
 
+    //Rear Claw
     if(Controller1.get_digital(DIGITAL_A)){
-      ring_manipulator.set_value(false);
+      rear_mobile_goal.set_value(false);
     }
     else{
-      ring_manipulator.set_value(true);
+      rear_mobile_goal.set_value(true);
     }
-
     ///////////////////////////////////////////////////////////////////////////
     pros::delay(10);
   }

@@ -55,41 +55,35 @@
 // using namespace pros::literals;
 // using namespace okapi;
 
-#define LEFT_BACK_MOTOR_PORT 11
 #define LEFT_FRONT_MOTOR_PORT 14
 #define CENTER_LEFT_PORT 17
-#define CENTER_RIGHT_PORT 4
+#define LEFT_BACK_MOTOR_PORT 11
 #define RIGHT_FRONT_MOTOR_PORT 13
+#define CENTER_RIGHT_PORT 4
 #define RIGHT_BACK_MOTOR_PORT 12
-#define MOBILE_GOAL_LEFT_PORT 2
-#define MOBILE_GOAL_RIGHT_PORT 1
+#define MOBILE_GOAL_PORT 2
+#define INTAKE_PORT 1
 #define ROTATION_LEFT_PORT 18
 #define ROTATION_RIGHT_PORT 17
 #define MOBO_POT_PORT 1
-#define CENTER_SHIFTER_PORT 4
-#define RING_MANIPULATOR_PORT 8
-#define DRIVE_SPEED_SHIFTER_PORT 6
-#define RING_POT_PORT 5
+#define FRONT_MOBILE_GOAL_PORT 8
+#define REAR_MOBILE_GOAL_PORT 4
+
 
 extern pros::Controller Controller1;
-extern pros::Motor left_back_motor;
 extern pros::Motor left_front_motor;
 extern pros::Motor center_left;
+extern pros::Motor left_back_motor;
+extern pros::Motor right_front_motor;
 extern pros::Motor center_right;
 extern pros::Motor right_back_motor;
-extern pros::Motor right_front_motor;
-extern pros::Motor mobile_goal_left;
-extern pros::Motor mobile_goal_right;
+extern pros::Motor mobile_goal;
+extern pros::Motor intake;
 extern pros::Rotation rotation_left;
 extern pros::Rotation rotation_right;
 extern pros::ADIAnalogIn mobo_pot;
-extern pros::ADIDigitalOut center_shifter;
-extern pros::ADIDigitalOut ring_manipulator;
-extern pros::ADIDigitalOut drive_speed_shifter;
-extern pros::ADIAnalogIn ring_pot;
-
-extern bool center_shifter_state;
-extern bool drive_speed_shifter_state;
+extern pros::ADIDigitalOut front_mobile_goal;
+extern pros::ADIDigitalOut rear_mobile_goal;
 
 /**
  * Prototypes for the competition control tasks are redefined here to ensure

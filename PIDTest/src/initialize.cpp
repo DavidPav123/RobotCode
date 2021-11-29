@@ -12,9 +12,6 @@ int contollerLine = 0;
 
 
 void initialize() {
-  center_shifter.set_value(true);
-  drive_speed_shifter.set_value(false);
-  pros::delay(500); //Delay to make sure it doesnt freak out
   while(Pre==0){//Gui initialize
  		if(Screen == 0){//Home Screen
  			pros::screen::erase();
@@ -24,7 +21,7 @@ void initialize() {
  			pros::screen::draw_rect(165,10,465,230); //Draws Main Rectangle
  			pros::screen::draw_rect(175,60,455,135); //Auto Select
  			pros::screen::draw_rect(175,145,455,220); //System Diagnostics
-      pros::screen::draw_rect(410,18,455,42); //Set Box
+      pros::screen::draw_rect(410,18,455,42); //Set Boxs
       pros::screen::draw_line(175,50,455,50); //Underline
       pros::screen::set_pen(COLOR_MAROON);
  			pros::screen::print(TEXT_LARGE,175,15,"Home");
