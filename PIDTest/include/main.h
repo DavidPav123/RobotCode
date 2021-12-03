@@ -53,21 +53,21 @@
  */
 // using namespace pros;
 // using namespace pros::literals;
-// using namespace okapi;
+// using namespace okapi;a
 
-#define LEFT_FRONT_MOTOR_PORT 14
-#define CENTER_LEFT_PORT 17
-#define LEFT_BACK_MOTOR_PORT 11
-#define RIGHT_FRONT_MOTOR_PORT 13
-#define CENTER_RIGHT_PORT 4
+#define LEFT_FRONT_MOTOR_PORT 5
+#define CENTER_LEFT_PORT 3
+#define LEFT_BACK_MOTOR_PORT 1
+#define RIGHT_FRONT_MOTOR_PORT 17
+#define CENTER_RIGHT_PORT 11
 #define RIGHT_BACK_MOTOR_PORT 12
-#define MOBILE_GOAL_PORT 2
-#define INTAKE_PORT 1
-#define ROTATION_LEFT_PORT 18
-#define ROTATION_RIGHT_PORT 17
-#define MOBO_POT_PORT 1
-#define FRONT_MOBILE_GOAL_PORT 8
-#define REAR_MOBILE_GOAL_PORT 4
+#define MOBILE_GOAL_PORT 20
+#define INTAKE_PORT 19
+#define ROTATION_LEFT_PORT 14
+#define ROTATION_RIGHT_PORT 18
+#define MOBO_POT_PORT 6
+#define FRONT_MOBILE_GOAL_PORT 7
+#define REAR_MOBILE_GOAL_PORT 8
 
 
 extern pros::Controller Controller1;

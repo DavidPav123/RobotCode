@@ -143,7 +143,7 @@ void MotorConnected(){
 	pros::screen::draw_line(165,110,465,110); //Top line
 	pros::screen::draw_line(165,140,465,140); //2nd line
 	pros::screen::draw_line(165,170,465,170); //3rd line
-	pros::screen::draw_line(165,200,465,200); //4th line
+	pros::screen::draw_line(165,200,465,200); //4th line a
 	pros::screen::draw_line(315,110,315,230); //Verticle line
 	pros::screen::draw_rect(425,75,455,105); //Next page arrow square
 	pros::screen::set_pen(COLOR_MAROON);
@@ -271,11 +271,11 @@ void MIfChain(){
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(455, 155, 5);
 	}
-	if(mobile_goal_left.get_temperature() < 50){
+	if(mobile_goal.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(305, 215, 5);
 	}
-	else if(mobile_goal_left.get_temperature() < 100){
+	else if(mobile_goal.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(305, 215, 5);
 	}
@@ -283,11 +283,11 @@ void MIfChain(){
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(305, 215, 5);
 	}
-	if(mobile_goal_right.get_temperature() < 50){
+	if(intake.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(455, 215, 5);
 	}
-	else if(mobile_goal_right.get_temperature() < 100){
+	else if(intake.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(455, 215, 5);
 	}
@@ -321,13 +321,5 @@ void SensorChain(){
 	else{
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(305, 155, 5);
-	}
-	if(ring_pot.get_value() == 40 || ring_pot.get_value() == 10){
-		pros::screen::set_pen(COLOR_RED);
-		pros::screen::fill_circle(455, 155, 5);
-	}
-	else{
-		pros::screen::set_pen(COLOR_GREEN);
-		pros::screen::fill_circle(455, 155, 5);
 	}
 }

@@ -57,12 +57,11 @@ void opcontrol(){
     ///////////////////////////////////////////////////////////////////////////
     //Front Claw
     if(Controller1.get_digital(DIGITAL_X)){
-      front_mobile_goal.set_value(true);
-    }
-    else if(Controller1.get_digital(DIGITAL_Y)){
       front_mobile_goal.set_value(false);
     }
-
+    else{
+      front_mobile_goal.set_value(true);
+    }
     //Rear Claw
     if(Controller1.get_digital(DIGITAL_A)){
       rear_mobile_goal.set_value(false);
