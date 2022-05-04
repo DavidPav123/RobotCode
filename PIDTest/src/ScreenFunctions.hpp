@@ -2,25 +2,29 @@
 
 void autoselectRed(){
 	pros::screen::set_pen(COLOR_RED);
-	pros::screen::draw_rect(320,69,455,216);
-	pros::screen::draw_line(320,105,455,105);
-	pros::screen::draw_line(320,142,455,142);
-	pros::screen::draw_line(320,179,455,179);
-	pros::screen::print(TEXT_MEDIUM,328,80,"Upside Rings");
-	pros::screen::print(TEXT_MEDIUM,328,118,"Upside Middle");
-	pros::screen::print(TEXT_MEDIUM,328,156,"None");
-	pros::screen::print(TEXT_MEDIUM,328,193,"None");
+	pros::screen::draw_rect(320,60,455,220);
+	pros::screen::draw_line(320,92,455,92);
+	pros::screen::draw_line(320,124,455,124);
+	pros::screen::draw_line(320,156,455,156);
+	pros::screen::draw_line(320,188,455,188);
+	pros::screen::print(TEXT_MEDIUM,328,70,"LN+AG");
+	pros::screen::print(TEXT_MEDIUM,328,102,"CNG");
+	pros::screen::print(TEXT_MEDIUM,328,135,"LF->Center");
+	pros::screen::print(TEXT_MEDIUM,328,167,"Left Spin");
+	pros::screen::print(TEXT_MEDIUM,328,199,"CF->LN");
 }
 void autoselectBlue(){
 	pros::screen::set_pen(COLOR_BLUE);
-	pros::screen::draw_rect(320,69,455,216);
-	pros::screen::draw_line(320,105,455,105);
-	pros::screen::draw_line(320,142,455,142);
-	pros::screen::draw_line(320,179,455,179);
-	pros::screen::print(TEXT_MEDIUM,328,80,"Downside Finals");
-	pros::screen::print(TEXT_MEDIUM,328,118,"Downside Rings");
-	pros::screen::print(TEXT_MEDIUM,328,156,"Upside Finals");
-	pros::screen::print(TEXT_MEDIUM,328,193,"None");
+	pros::screen::draw_rect(320,60,455,220);
+	pros::screen::draw_line(320,92,455,92);
+	pros::screen::draw_line(320,124,455,124);
+	pros::screen::draw_line(320,156,455,156);
+	pros::screen::draw_line(320,188,455,188);
+	pros::screen::print(TEXT_MEDIUM,328,70,"RN+AG+Rings");
+	pros::screen::print(TEXT_MEDIUM,328,102,"Right Spin");
+	pros::screen::print(TEXT_MEDIUM,328,135,"RF->Center");
+	pros::screen::print(TEXT_MEDIUM,328,167,"CNG+AG+Rings");
+	pros::screen::print(TEXT_MEDIUM,328,199,"CF->RN");
 }
 
 void TextChanger(int pencolour){
