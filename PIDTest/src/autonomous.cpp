@@ -1,143 +1,314 @@
-#include "main.h"
 #include "Functions.hpp"
 
-//Drive PID
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Constants
-
-/*double kP = 0.2;
-double kI = 0.0;
-double kD = 0.0;
-int max_speed = 10000;
-
-//Autonomous Settings
-double desiredvalueDrive = 0;
-bool resetDriveSensors = false;
-bool enableDrivePID = false;
-
-//Setting up running variables
-int left_error; //SensorValue - desiredvalueDrive : Position
-int right_error; //SensorValue - desiredvalueDrive : Position
-int left_prevError = 0; //Previous Position
-int right_prevError = 0; //Previous Position
-int left_derivative; // error - prevError : Speed
-int right_derivative; // error - prevError : Speed
-int left_totalError = 0; //totalError + error
-int right_totalError = 0; //totalError + error
-int left_averagePosition; //Average value of the rotation sensors
-int right_averagePosition; //Average value of the rotation sensors
-double left_lateralMotorPower; //Calculating motor power based on inputs and constants
-double right_lateralMotorPower; //Calculating motor power based on inputs and constants
-
-int drivePID(){
-  while(1){
-  while(enableDrivePID){
-    if (resetDriveSensors) {
-      rotation_left.reset_position();
-      rotation_right.reset_position();
-      resetDriveSensors = false;
-    }
-    left_averagePosition = (abs(rotation_left.get_position()));
-    right_averagePosition = (abs(rotation_right.get_position()));
-    left_error = desiredvalueDrive - left_averagePosition;
-    right_error = desiredvalueDrive - right_averagePosition;
-    left_totalError += left_error;
-    right_totalError += right_error;
-    left_derivative = left_error - left_prevError;
-    right_derivative = right_error - right_prevError;
-    left_lateralMotorPower = (left_error * kP + left_derivative * kD + left_totalError * kI); //lateralMotorPower = error * kP + derivative * kD + totalError * kI;
-    if(left_lateralMotorPower > max_speed){
-      left_lateralMotorPower = max_speed;
-    }
-    right_lateralMotorPower = (right_error * kP + right_derivative * kD + right_totalError * kI);
-    if(right_lateralMotorPower > max_speed){
-      right_lateralMotorPower = max_speed;
-    }
-    //Running motors based off calculated power
-    left_back_motor.move_voltage(left_lateralMotorPower);
-    right_front_motor.move_voltage(left_lateralMotorPower);
-    right_back_motor.move_voltage(-left_lateralMotorPower);
-    left_front_motor.move_voltage(right_lateralMotorPower);
-    center_right.move_voltage(right_lateralMotorPower);
-    center_left.move_voltage(right_lateralMotorPower);
-
-    left_prevError = left_error;
-    right_prevError = right_error;
-
-  //Enable for actual use, adjust the error based on acceptable range of offness
-
-    //if( right_error < 3 and right_error > -3 ){
-
-    //enableDrivePID = false;
-  //}
-    pros::screen::print(pros::E_TEXT_LARGE, 3, "ENCODER: %3d", rotation_left.get_position());
-    pros::screen::print(pros::E_TEXT_LARGE, 5, "ENCODER: %3d", rotation_right.get_position());
-    pros::delay(15);
-  }
-  }return 1;
-}
-
-void driveUsingPID(int traveldistance){
-  double DistancetoRotations = 36000 * (traveldistance/circumference);
-  desiredvalueDrive = DistancetoRotations; //One rotation is 36000
-  resetDriveSensors = true;
-  enableDrivePID = true;
-  pros::Task Driving(drivePID);
-  while(enableDrivePID == true){
-    pros::delay(20);
-  }
-  DriveStop();
-}*/
+void my_task_fn(void* param) {
+  FrontClawOpen();
+  ring_grabber.set_value(true);
+  tilter.set_value(false);
+  pros::delay(150);
+  ring_grabber.set_value(false);
+ }
 
 void autonomous(){
-  front_mobile_goal.set_value(false);
-  encoderDrive(12000,45);
-  front_mobile_goal.set_value(true);
-  encoderDrive(-12000, 30);
-  timeDrive(-11000,1250);
-  encoderDrive(12000, 3.5);
-  rear_mobile_goal.set_value(false);
-  pros::delay(1000);
-  encoderTurn(-11000,11);
+
+
+
+
+/*
+
+  //Blue Side Autos
+  if(ProgSelect == 11){//Blue Right neutral + Alliance + Rings
+  mobile_goal.set_brake_mode(MOTOR_BRAKE_HOLD);
+  pros::Task my_task(my_task_fn);
+  encoderDrive(12000,40);
+  FrontClawClose();
+  mobile_goal.move_voltage(10000);
   pros::delay(500);
-  encoderDrive(-12000,60);
-
-  //own6
-  /*front_mobile_goal.set_value(false);
-  encoderDrive(12000,45);
-  front_mobile_goal.set_value(true);
-  encoderDrive(-12000, 30);
-front_mobile_goal.set_value(false);
-  pros::delay(250);
-  timeDrive(-11000,1250);
-  encoderDrive(12000, 5);
-  rear_mobile_goal.set_value(false);
-  pros::delay(1000);
-  encoderTurn(-11000,7);
-  encoderDrive(-12000,14);
-  rear_mobile_goal.set_value(true);
-  encoderDrive(12000,15);
-  intake.move_voltage(12000);*/
-
-  //Upside Auto
-  /*front_mobile_goal.set_value(false);
-  encoderDrive(12000,42);
-  front_mobile_goal.set_value(true);
-  encoderDrive(-12000,30);
+  mobile_goal.move_voltage(0);
+  encoderDrive(-12000,40);
+  timeDrive(-6000,1000);
+  DriveStop();
+  RearClawDown();
+  encoderDrive(10000, 24);
   pros::delay(500);
-  encoderTurn(-9000, 10.5);
-  rear_mobile_goal.set_value(false);
-  encoderDrive(-12000, 20);
-  rear_mobile_goal.set_value(true);
-  intake.move_voltage(12000);
-  encoderDrive(12000, 5);
-  encoderTurn(12000,2);
-  encoderDrive(12000, 35);
-  intake.move_voltage(0);*/
+  encoderTurn(-7000, 10.4);
+  pros::delay(500);
+  timeDrive(-8000,1250);
+  DriveStop();
+  RearClawUp();
+  pros::delay(750);
+  encoderDrive(8000, 2);
+  intakeIn(8000);
+  mobile_goal.move_voltage(-12000);
+  encoderTurn(8000, 12);
+  pros::delay(500);
+  mobile_goal.move_voltage(0);
+  encoderDrive(5000, 45);
+  timeDrive(-12000, 1250);
+  intake.move_voltage(0);
+  DriveStop();
+  }
 
+  if(ProgSelect == 12){ //Right Nuetral Spin
+  mobile_goal.set_brake_mode(MOTOR_BRAKE_HOLD);
+  pros::Task my_task(my_task_fn);
+  encoderDrive(12000,40);
+  FrontClawClose();
+  mobile_goal.move_voltage(-12000);
+  encoderTurn(-12000, 12);
+  mobile_goal.move_voltage(0);
+  pros::delay(750);
+  timeDrive(12000,1000);
+  DriveStop();
+  }
 
-  /*if(ProgSelect == 1.1){ Front Blue 1
+  if(ProgSelect == 13){ //RF -> Center
+  FrontClawOpen();
+  encoderDrive(10000, 14.5);
+  pros::delay(500);
+  encoderTurn(-7500, 3.5);
+  pros::delay(500);
+  encoderDrive(12000, 33);
+  RearClawDown();
+  FrontClawClose();
+  pros::delay(500);
+  encoderDrive(-12000, 40);
+  timeDrive(-7000, 500);
+  DriveStop();
+  RearClawUp();
+  encoderTurn(8000, 8);
+  intakeIn(10000);
+  }
 
-  }*/
-  pros::delay(100);
+  if(ProgSelect == 14){ Center -> Alliance -> Rings
+  mobile_goal.set_brake_mode(MOTOR_BRAKE_HOLD);
+  pros::Task my_task(my_task_fn);
+  encoderDrive(12000,53);
+  FrontClawClose();
+  pros::delay(500);
+  encoderDrive(-12000, 30);
+  RearClawDown();
+  pros::delay(500);
+  encoderTurn(-7500, 5.5);
+  pros::delay(500);
+  encoderDrive(-12000, 15);
+  pros::delay(500);
+  timeDrive(-7000, 1000);
+  DriveStop();
+  RearClawUp();
+  pros::delay(750);
+  encoderDrive(8000, 2);
+  intakeIn(8000);
+  mobile_goal.move_voltage(-12000);
+  encoderTurn(8000, 12);
+  pros::delay(500);
+  mobile_goal.move_voltage(0);
+  encoderDrive(4000, 45);
+  timeDrive(-12000, 1250);
+  intake.move_voltage(0);
+  DriveStop();
+}
+
+if(ProgSelect == 15){ CF -> Right Nuetral
+FrontClawOpen();
+encoderDrive(10000, 2);
+//pros::delay(500);
+encoderTurn3(12000, 25);
+encoderDrive(12000, 18);
+FrontClawClose();
+pros::delay(500);
+encoderDrive(-12000, 23);
+RearClawDown();
+pros::delay(500);
+encoderTurn(-7500, 11);
+pros::delay(500);
+encoderDrive(-12000, 20);
+pros::delay(500);
+timeDrive(-7000,1000);
+DriveStop();
+RearClawUp();
+pros::delay(750);
+encoderDrive(8000, 2);
+intakeIn(8000);
+mobile_goal.move_voltage(-12000);
+encoderTurn(8000, 12);
+pros::delay(500);
+mobile_goal.move_voltage(0);
+encoderDrive(5000, 45);
+timeDrive(-12000, 1250);
+intake.move_voltage(0);
+DriveStop();
+}
+
+if(ProgSelect == 16){ Left Nutral + Alliance Goal
+mobile_goal.set_brake_mode(MOTOR_BRAKE_HOLD);
+pros::Task my_task(my_task_fn);
+encoderDrive(12000,40);
+FrontClawClose();
+mobile_goal.move_voltage(10000);
+RearClawDown();
+pros::delay(500);
+mobile_goal.move_voltage(0);
+encoderDrive(-12000,40);
+timeDrive(-6000,1000);
+DriveStop();
+pros::delay(500);
+encoderDrive(8000, 4);
+pros::delay(500);
+encoderTurn(-8000, 8.5);
+pros::delay(500);
+timeDrive(-6000,1000);
+DriveStop();
+RearClawUp();
+pros::delay(750);
+encoderDrive(12000, 5);
+intakeIn(10000);
+}
+
+  if(ProgSelect == 17){ Center Goal Left Side
+  mobile_goal.set_brake_mode(MOTOR_BRAKE_HOLD);
+  intakeIn(12000);
+  pros::Task my_task(my_task_fn);
+  encoderDrive(12000,60);
+  FrontClawClose();
+  mobile_goal.move_voltage(10000);
+  pros::delay(500);
+  encoderDrive(-12000,55);
+  mobile_goal.move_voltage(0);
+}
+
+if(ProgSelect == 18){ FL -> Center
+FrontClawOpen();
+encoderDrive(10000, 14.5);
+pros::delay(500);
+encoderTurn(7500, 2.89);
+pros::delay(500);
+intakeIn(12000);
+encoderDrive(12000, 38);
+RearClawDown();
+FrontClawClose();
+intakeIn(0);
+pros::delay(500);
+encoderDrive(-12000, 45);
+pros::delay(500);
+encoderTurn(-7500, 3.5);
+pros::delay(500);
+timeDrive(-7000, 1500);
+DriveStop();
+encoderDrive(12000, 2);
+pros::delay(500);
+encoderTurn(-8000, 8);
+timeDrive(-6000,1000);
+DriveStop();
+RearClawUp();
+intakeIn(10000);
+}
+
+if(ProgSelect == 19){ //Left Goal Spin
+mobile_goal.set_brake_mode(MOTOR_BRAKE_HOLD);
+pros::Task my_task(my_task_fn);
+encoderDrive(12000,40);
+FrontClawClose();
+mobile_goal.move_voltage(-12000);
+encoderTurn(12000, 31);
+mobile_goal.move_voltage(0);
+pros::delay(750);
+timeDrive(12000,500);
+DriveStop();
+}
+
+if(ProgSelect == 20){ //CF -> Left Neutral
+FrontClawOpen();
+encoderDrive(10000, 2);
+//pros::delay(500);
+encoderTurn4(12000, 20);
+encoderDrive(12000, 25);
+FrontClawClose();
+pros::delay(500);
+encoderTurn(10000, 1);
+pros::delay(500);
+encoderDrive(-12000, 45);
+RearClawDown();
+timeDrive(-7000, 1000);
+pros::delay(500);
+encoderDrive(12000, 2);
+pros::delay(500);
+encoderTurn(-7500, 8);
+pros::delay(500);
+timeDrive(-6000,1000);
+DriveStop();
+RearClawUp();
+pros::delay(750);
+encoderDrive(8000, 2);
+intakeIn(8000);
+}
+
+  //Red Side Auto
+  if(ProgSelect == 21){ //STATES UPSIDE RINGS
+    front_mobile_goal.set_value(false);
+    encoderDrive(12000,42);
+    front_mobile_goal.set_value(true);
+    encoderDrive(-12000, 46);
+    timeDrive(-4000, 500);
+    pros::delay(25);
+    chassis->setState({0_in, 0_in, 0_deg});
+    pros::delay(25);
+    chassis1->setState({0_in, 0_in, 0_deg});
+    pros::delay(100);
+    rear_mobile_goal.set_value(true);
+    chassis->driveToPoint({23_in, 0_in});
+    pros::delay(25);
+    mobile_goal.move_voltage(-12000);
+    chassis1->turnAngle(-85_deg);
+    pros::delay(25);
+    mobile_goal.move_voltage(0);
+    mobile_goal.set_brake_mode(MOTOR_BRAKE_COAST);
+    timeDrive(-4000, 1500);
+    rear_mobile_goal.set_value(false);
+    mobile_goal.move_voltage(-12000);
+    chassis->moveDistance(12_in);
+    pros::delay(25);
+    chassis1->turnAngle(-90_deg);
+    pros::delay(25);
+    intake.move_voltage(12000);
+    timeDrive(5000, 1500);
+    mobile_goal.move_voltage(0);
+    mobile_goal.set_brake_mode(MOTOR_BRAKE_HOLD);
+    chassis->moveDistance(-24_in);
+    pros::delay(500);
+    timeDrive(5000, 1500);
+  }
+
+  if(ProgSelect == 16){
+
+  }
+
+  if(ProgSelect == 22){ //Upside Middle
+    pros::delay(25);
+    chassis->moveDistance(20_in);
+    pros::delay(25);
+    chassis->turnAngle(-45_deg);
+    pros::delay(25);
+    chassis->moveDistance(40_in);
+    pros::delay(25);
+    front_mobile_goal.set_value(true);
+    pros::delay(25);
+    chassis->moveDistance(-42_in);
+    pros::delay(25);
+    mobile_goal.move_voltage(-12000);
+    chassis->turnAngle(-45_deg);
+    mobile_goal.move_voltage(0);
+    mobile_goal.set_brake_mode(MOTOR_BRAKE_COAST);
+    timeDrive(-4000, 1500);
+    rear_mobile_goal.set_value(false);
+    mobile_goal.move_voltage(-12000);
+    chassis->moveDistance(12_in);
+    pros::delay(25);
+    chassis1->turnAngle(-90_deg);
+    pros::delay(25);
+    intake.move_voltage(12000);
+    timeDrive(5000, 1500);
+    mobile_goal.move_voltage(0);
+    mobile_goal.set_brake_mode(MOTOR_BRAKE_HOLD);
+  }
+  */
 }

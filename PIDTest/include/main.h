@@ -39,8 +39,8 @@
 /**
  * You should add more #includes here
  */
- #include "cmath"
-//#include "okapi/api.hpp"
+#include "cmath"
+#include "okapi/api.hpp"
 //#include "pros/api_legacy.h"
 
 /**
@@ -53,23 +53,31 @@
  */
 // using namespace pros;
 // using namespace pros::literals;
-// using namespace okapi;a
+using namespace okapi;
 
-#define LEFT_FRONT_MOTOR_PORT 5
-#define CENTER_LEFT_PORT 3
-#define LEFT_BACK_MOTOR_PORT 1
+//Define Device Ports
+#define LEFT_FRONT_MOTOR_PORT 11
+#define CENTER_LEFT_PORT 12
+#define LEFT_BACK_MOTOR_PORT 13
 #define RIGHT_FRONT_MOTOR_PORT 17
-#define CENTER_RIGHT_PORT 11
-#define RIGHT_BACK_MOTOR_PORT 12
-#define MOBILE_GOAL_PORT 20
-#define INTAKE_PORT 19
-#define ROTATION_LEFT_PORT 14
-#define ROTATION_RIGHT_PORT 18
-#define MOBO_POT_PORT 6
-#define FRONT_MOBILE_GOAL_PORT 7
-#define REAR_MOBILE_GOAL_PORT 8
+#define CENTER_RIGHT_PORT 18
+#define RIGHT_BACK_MOTOR_PORT 19
+#define MOBILE_GOAL_PORT 4
+#define INTAKE_PORT 5
+#define ROTATION_LEFT_PORT 2
+#define ROTATION_RIGHT_PORT 3
+#define GPS_PORT 21
+#define CAMERA_PORT 6
+//Define 3-Wire Device Ports
+#define MOBO_POT_PORT 5
+#define FRONT_MOBILE_GOAL_PORT 3
+#define REAR_MOBILE_GOAL_PORT 1
+#define RING_GRABBER_PORT 4
+#define TILTER_PORT 2
 
 
+
+//Define devices
 extern pros::Controller Controller1;
 extern pros::Motor left_front_motor;
 extern pros::Motor center_left;
@@ -84,6 +92,11 @@ extern pros::Rotation rotation_right;
 extern pros::ADIAnalogIn mobo_pot;
 extern pros::ADIDigitalOut front_mobile_goal;
 extern pros::ADIDigitalOut rear_mobile_goal;
+extern pros::ADIDigitalOut tilter;
+extern pros::ADIDigitalOut ring_grabber;
+extern pros::Vision vision_sensor;
+
+extern int ProgSelect;
 
 /**
  * Prototypes for the competition control tasks are redefined here to ensure

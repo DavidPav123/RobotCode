@@ -1,65 +1,26 @@
 #include "main.h"
 
-int ProgSelect = 0;
-
 void autoselectRed(){
 	pros::screen::set_pen(COLOR_RED);
-  pros::screen::draw_rect(320,69,455,216);
-  pros::screen::draw_line(320,105,455,105);
-  pros::screen::draw_line(320,142,455,142);
-  pros::screen::draw_line(320,179,455,179);
-  pros::screen::print(TEXT_MEDIUM,328,80,"Placeholder 1");
-  pros::screen::print(TEXT_MEDIUM,328,118,"Placeholder 2");
-  pros::screen::print(TEXT_MEDIUM,328,156,"Placeholder 3");
-  pros::screen::print(TEXT_MEDIUM,328,193,"Placeholder 4");
+	pros::screen::draw_rect(320,69,455,216);
+	pros::screen::draw_line(320,105,455,105);
+	pros::screen::draw_line(320,142,455,142);
+	pros::screen::draw_line(320,179,455,179);
+	pros::screen::print(TEXT_MEDIUM,328,80,"Upside Rings");
+	pros::screen::print(TEXT_MEDIUM,328,118,"Upside Middle");
+	pros::screen::print(TEXT_MEDIUM,328,156,"None");
+	pros::screen::print(TEXT_MEDIUM,328,193,"None");
 }
 void autoselectBlue(){
-  pros::screen::set_pen(COLOR_BLUE);
-  pros::screen::draw_rect(320,69,455,216);
-  pros::screen::draw_line(320,105,455,105);
-  pros::screen::draw_line(320,142,455,142);
-  pros::screen::draw_line(320,179,455,179);
-  pros::screen::print(TEXT_MEDIUM,328,80,"Placeholder 1");
-  pros::screen::print(TEXT_MEDIUM,328,118,"Placeholder 2");
-  pros::screen::print(TEXT_MEDIUM,328,156,"Placeholder 3");
-  pros::screen::print(TEXT_MEDIUM,328,193,"Placeholder 4");
-}
-
-void printSelectedAuto(){
-	switch(ProgSelect){
-		case 11:
-			pros::screen::print(TEXT_LARGE,175,120,"PH");
-			Controller1.print(1, 8, "PHA");
-			break;
-		case 12:
-			pros::screen::print(TEXT_LARGE,175,120,"PH");
-			Controller1.print(1, 8, "PHA");
-			break;
-		case 13:
-			pros::screen::print(TEXT_LARGE,175,120,"PH");
-			Controller1.print(1, 8, "PHA");
-			break;
-		case 14:
-			pros::screen::print(TEXT_LARGE,175,120,"Ph");
-			Controller1.print(1, 8, "PHA");
-			break;
-		case 21:
-			pros::screen::print(TEXT_LARGE,175,120,"Ph");
-			Controller1.print(1, 8, "PHA");
-			break;
-		case 22:
-			pros::screen::print(TEXT_LARGE,175,120,"PH");
-			Controller1.print(1, 8, "PHA");
-			break;
-		case 23:
-			pros::screen::print(TEXT_LARGE,175,120,"ph");
-			Controller1.print(1, 8, "PHA");
-			break;
-		case 24:
-			pros::screen::print(TEXT_LARGE,175,120,"ph");
-			Controller1.print(1, 8, "PHA");
-			break;
-	}
+	pros::screen::set_pen(COLOR_BLUE);
+	pros::screen::draw_rect(320,69,455,216);
+	pros::screen::draw_line(320,105,455,105);
+	pros::screen::draw_line(320,142,455,142);
+	pros::screen::draw_line(320,179,455,179);
+	pros::screen::print(TEXT_MEDIUM,328,80,"Downside Finals");
+	pros::screen::print(TEXT_MEDIUM,328,118,"Downside Rings");
+	pros::screen::print(TEXT_MEDIUM,328,156,"Upside Finals");
+	pros::screen::print(TEXT_MEDIUM,328,193,"None");
 }
 
 void TextChanger(int pencolour){
@@ -72,7 +33,7 @@ void TextChanger(int pencolour){
 	if(pencolour == 2){
 		pros::screen::set_pen(COLOR_GOLD);
 	}
-  //4
+	//4
 	pros::screen::draw_line(40,10,70,10);
 	pros::screen::draw_line(10,35,10,65);
 	pros::screen::draw_line(40,10,10,35);
@@ -88,7 +49,7 @@ void TextChanger(int pencolour){
 	pros::screen::draw_line(50,30,50,50);
 	pros::screen::draw_line(30,50,50,50);
 	pros::screen::draw_line(30,49,49,29);
-  //4
+	//4
 	pros::screen::draw_line(110,60,140,60);
 	pros::screen::draw_line(80,85,80,115);
 	pros::screen::draw_line(110,60,80,85);
@@ -104,7 +65,7 @@ void TextChanger(int pencolour){
 	pros::screen::draw_line(120,80,120,100);
 	pros::screen::draw_line(100,100,120,100);
 	pros::screen::draw_line(100,99,119,79);
-  //4
+	//4
 	pros::screen::draw_line(40,110,70,110);
 	pros::screen::draw_line(10,135,10,165);
 	pros::screen::draw_line(40,110,10,135);
@@ -120,7 +81,7 @@ void TextChanger(int pencolour){
 	pros::screen::draw_line(50,130,50,150);
 	pros::screen::draw_line(30,150,50,150);
 	pros::screen::draw_line(30,149,49,129);
-  //2
+	//2
 	pros::screen::draw_line(105,160,135,160);
 	pros::screen::draw_line(90,170,90,185);
 	pros::screen::draw_line(105,160,90,170);
@@ -198,100 +159,91 @@ void SensorConnected(){
 	//pros::screen::fill_circle(455, 215, 5);
 }
 
-void MIfChain(){
+void MIfChain(){ //If statments for settings screen colors
 	if(left_back_motor.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(305, 185, 5);
-	}
-	else if(left_back_motor.get_temperature() < 100){
+	}else if(left_back_motor.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(305, 185, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(305, 185, 5);
 	}
+
 	if(left_front_motor.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(305, 125, 5);
-	}
-	else if(left_front_motor.get_temperature() < 100){
+	}else if(left_front_motor.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(305, 125, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(305, 125, 5);
 	}
+
 	if(center_left.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(305, 155, 5);
-	}
-	else if(center_left.get_temperature() < 100){
+	}else if(center_left.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(305, 155, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(305, 155, 5);
 	}
+
 	if(right_front_motor.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(455, 125, 5);
-	}
-	else if(right_front_motor.get_temperature() < 100){
+	}else if(right_front_motor.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(455, 125, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(455, 125, 5);
 	}
+
 	if(right_back_motor.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(455, 185, 5);
-	}
-	else if(right_back_motor.get_temperature() < 100){
+	}else if(right_back_motor.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(455, 185, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(455, 185, 5);
 	}
+
 	if(center_right.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(455, 155, 5);
-	}
-	else if(center_right.get_temperature() < 100){
+	}else if(center_right.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(455, 155, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(455, 155, 5);
 	}
+
 	if(mobile_goal.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(305, 215, 5);
-	}
-	else if(mobile_goal.get_temperature() < 100){
+	}else if(mobile_goal.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(305, 215, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(305, 215, 5);
 	}
+
 	if(intake.get_temperature() < 50){
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(455, 215, 5);
-	}
-	else if(intake.get_temperature() < 100){
+	}else if(intake.get_temperature() < 100){
 		pros::screen::set_pen(COLOR_YELLOW);
 		pros::screen::fill_circle(455, 215, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(455, 215, 5);
 	}
@@ -301,24 +253,23 @@ void SensorChain(){
 	if(rotation_left.get_velocity()> 2000000000){
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(305, 125, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(305, 125, 5);
 	}
+
 	if(rotation_right.get_velocity()> 2000000000){
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(455, 125, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(455, 125, 5);
 	}
+
 	if(mobo_pot.get_value() == 39){
 		pros::screen::set_pen(COLOR_RED);
 		pros::screen::fill_circle(305, 155, 5);
-	}
-	else{
+	}else{
 		pros::screen::set_pen(COLOR_GREEN);
 		pros::screen::fill_circle(305, 155, 5);
 	}
