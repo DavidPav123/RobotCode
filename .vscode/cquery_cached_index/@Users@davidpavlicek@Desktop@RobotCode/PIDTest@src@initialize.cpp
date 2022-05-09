@@ -77,9 +77,9 @@ void initialize() {
 			pros::delay(50); //Delay to make sure there is no accidental input
 			Controller1.print(0, 5, "***SET***"); //Print on controller screen to indicate when ready to enter the Program
 			pros::delay(50); //Delay to make sure there is no accidental input
-			Controller1.print(1, 8, "BLUE"); //Print on controller screen to indicate when ready to enter the Program
+			Controller1.print(1, 8, "RIGHT"); //Print on controller screen to indicate when ready to enter the Program
 			pros::delay(50); //Delay to make sure there is no accidental input
-			Controller1.print(2, 8, "RED"); //Print on controller screen to indicate when ready to enter the Program
+			Controller1.print(2, 8, "LEFT"); //Print on controller screen to indicate when ready to enter the Program
 			pros::delay(50); //Delay to make sure there is no accidental input
 
 			while(Screen == 0){//Home screen
@@ -132,9 +132,9 @@ void initialize() {
 						pros::delay(50); //Delay to make sure there is no accidental input
 						Controller1.print(0, 5, "***SET***"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
-						Controller1.print(1, 8, "BLUE"); //Print on controller screen to indicate when ready to enter the Program
+						Controller1.print(1, 8, "RIGHT"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
-						Controller1.print(2, 8, "RED"); //Print on controller screen to indicate when ready to enter the Program
+						Controller1.print(2, 8, "LEFT"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
 						controllerLine--;
 					}
@@ -143,9 +143,9 @@ void initialize() {
 						pros::delay(50); //Delay to make sure there is no accidental input
 						Controller1.print(0, 8, "SET"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
-						Controller1.print(1, 4, "***BLUE***"); //Print on controller screen to indicate when ready to enter the Program
+						Controller1.print(1, 4, "***RIGHT***"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
-						Controller1.print(2, 8, "RED"); //Print on controller screen to indicate when ready to enter the Program
+						Controller1.print(2, 8, "LEFT"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
 						controllerLine--;
 					}
@@ -156,9 +156,9 @@ void initialize() {
 						pros::delay(50); //Delay to make sure there is no accidental input
 						Controller1.print(0, 8, "SET"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
-						Controller1.print(1, 4, "***BLUE***"); //Print on controller screen to indicate when ready to enter the Program
+						Controller1.print(1, 4, "***RIGHT***"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
-						Controller1.print(2, 8, "RED"); //Print on controller screen to indicate when ready to enter the Program
+						Controller1.print(2, 8, "LEFT"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
 						controllerLine++;
 					}
@@ -167,9 +167,9 @@ void initialize() {
 						pros::delay(50); //Delay to make sure there is no accidental input
 						Controller1.print(0, 8, "SET"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
-						Controller1.print(1, 8, "BLUE"); //Print on controller screen to indicate when ready to enter the Program
+						Controller1.print(1, 8, "RIGHT"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
-						Controller1.print(2, 4, "***RED***"); //Print on controller screen to indicate when ready to enter the Program
+						Controller1.print(2, 4, "***LEFT***"); //Print on controller screen to indicate when ready to enter the Program
 						pros::delay(50); //Delay to make sure there is no accidental input
 						controllerLine++;
 					}
@@ -477,6 +477,9 @@ void initialize() {
 
 				if(Controller1.get_digital_new_press(DIGITAL_B)){//Menu
 					Screen = 0;
+					SideSelect = 0;
+					controllerLine = 0;
+					pros::delay(50);
 				}
 
 				if(Controller1.get_digital(DIGITAL_A)){

@@ -69,7 +69,7 @@ void opcontrol(){
     }
 
     if(Controller1.get_digital(DIGITAL_DOWN)){
-      if(mobo_pot.get_value()< 1580){
+      if(mobo_pot.get_value()< 1465){
         mobile_goal.move_voltage(-12000);
       }
       else{

@@ -36,8 +36,8 @@ void autonomous(){
     encoderTurn(8000, 12);
     pros::delay(500);
     mobile_goal.move_voltage(0);
-    encoderDrive(5000, 45);
-    timeDrive(-12000, 1250);
+    encoderDrive(5000, 40);
+    timeDrive(-12000, 1000);
     intake.move_voltage(0);
     DriveStop();
   }
@@ -79,7 +79,7 @@ void autonomous(){
     encoderDrive(12000,53);
     FrontClawClose();
     pros::delay(500);
-    encoderDrive(-12000, 30);
+    encoderDrive(-12000, 32);
     RearClawDown();
     pros::delay(500);
     encoderTurn(-7500, 5.5);
@@ -134,6 +134,7 @@ void autonomous(){
 
   if(ProgSelect == 21){ //Left Nutral + Alliance Goal
     mobile_goal.set_brake_mode(MOTOR_BRAKE_HOLD);
+    intakeIn(-12000);
     pros::Task my_task(my_task_fn);
     encoderDrive(12000,40);
     FrontClawClose();
