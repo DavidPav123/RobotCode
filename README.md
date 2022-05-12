@@ -1,2 +1,2 @@
 # RobotCode
-Program for Robotics Team #44420X
+Program for VEX Robotics Team 44420X, The Musubi Makers
